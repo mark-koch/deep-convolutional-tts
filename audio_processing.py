@@ -101,9 +101,12 @@ def invert_spectrogram(spectrogram):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description='Generates spectrograms from wav files.')
-    parser.add_argument('-w', '--wav', dest='wav_path', required=True, help='Directory of the wav files')
-    parser.add_argument('-m', '--mel', dest='mel_path', required=True, help='Directory for the mel spectrograms')
-    parser.add_argument('-l', '--lin', dest='lin_path', required=True, help='Directory for the linear spectrograms')
+    parser.add_argument('-w', '--wav', dest='wav_path', required=False, default="wav",
+                        help='Directory of the wav files')
+    parser.add_argument('-m', '--mel', dest='mel_path', required=False, default="mel",
+                        help='Directory for the mel spectrograms')
+    parser.add_argument('-l', '--lin', dest='lin_path', required=False, default="lin",
+                        help='Directory for the linear spectrograms')
     args = parser.parse_args()
 
     mels = []

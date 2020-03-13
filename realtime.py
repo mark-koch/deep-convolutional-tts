@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     while True:
         text = input("> ")
-        text = remove_abbreviations(text, args.language)
+        text = spell_out_numbers(text, args.language)
         text = normalize(text)
         text = text + Config.vocab_end_of_text
         text = vocab_lookup(text)

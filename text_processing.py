@@ -8,7 +8,7 @@ import sys
 from config import Config
 
 
-def remove_abbreviations(text, languange='en'):
+def spell_out_numbers(text, languange='en'):
     """
     Spells out abbreviations and numbers.
     """
@@ -113,7 +113,7 @@ if __name__ == "__main__":
     import os
     with open(sys.argv[1], "r") as f:
         text = f.read()
-    text = remove_abbreviations(text)
+    text = spell_out_numbers(text)
     lines = split_text(text, max_len=int(sys.argv[2]))
     path = os.path.join(os.path.dirname(sys.argv[1]), "lines.txt")
     with open(path, "w") as f:

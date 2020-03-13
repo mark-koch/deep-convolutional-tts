@@ -22,9 +22,9 @@ parser.add_argument('--t2m_bs', dest='text2mel_batch_size', type=int, default=32
                          'for SSRN')
 parser.add_argument('--ssrn_bs', dest='ssrn_batch_size', type=int, default=4, required=False,
                     help='Batch size to use for the SSRN network')
-parser.add_argument('-n', '--max_N', dest='max_N', type=int, default=180, required=False,
+parser.add_argument('-n', '--max_N', dest='max_N', type=int, default=None, required=False,
                     help='Maximum number of characters per text chunk.')
-parser.add_argument('-t', '--max_T', dest='max_T', type=int, default=210, required=False,
+parser.add_argument('-t', '--max_T', dest='max_T', type=int, default=None, required=False,
                     help='Maximum number of mel frames per generated audio chunk.')
 parser.add_argument('text_path', help='Path to the text file to be synthesized')
 
@@ -46,11 +46,16 @@ if __name__ == "__main__":
         print("WARNING: Text2Mel and SSRN have different saved configs. Will use Text2Mel config!")
     Config.set_config(config_t2m)
 
+    if args.max_N is None:
+        args.max_N = Config.max_N
+    if args.max_T is None:
+        args.max_T = Config.max_T
+
     # Read input file
     with io.open(args.text_path, "r", encoding="utf-8") as file:
         text = file.read()
 
-    text = remove_abbreviations(text, args.language)
+    text = spell_out_numbers(text, args.language)
     texts = split_text(text, max_len=args.max_N-1)  # -1 because we need to add an EOT at the end
     # Split the text into batches
     batches = []
@@ -89,7 +94,7 @@ if __name__ == "__main__":
 
         S = torch.zeros(len(batch), args.max_T, Config.F, requires_grad=False, device=device)
         previous_position = torch.zeros(len(batch), requires_grad=False, dtype=torch.long, device=device)
-        previous_att = None  # torch.zeros(len(batch), max_text_len, Config.max_T, requires_grad=False, device=device)
+        previous_att = None  # torch.zeros(len(batch), max_text_len, args.max_T, requires_grad=False, device=device)
         for t in range(args.max_T-1):
             print(t)
             _, Y, A, current_position = text2mel.forward(L, S,
