@@ -1,4 +1,4 @@
-# Deep Convolutional TTS
+# Deep Convolutional TTS [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1-vePaCwBcLD2H-mGScYE6MnfN8A4uGoz)
 
 A PyTorch implementation of "[Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention](https://arxiv.org/abs/1710.08969)".
 
@@ -65,13 +65,16 @@ With ``synthesize.py text.txt`` you can generate a wav file from a given text fi
 
 
 ## Samples
-See [here](http://mark-koch.github.io/deep-convolutional-tts/index.html).
+See [here](http://mark-koch.github.io/deep-convolutional-tts/index.html). All samples were generated with the models below.
 
 
 
 ## Pretrained models
 
-TODO
+Lanuage|Dataset|Text2Mel|SSRN|
+|--|--|--|--|
+English|LJ Speech|[350k steps](https://drive.google.com/open?id=12KvCJkID75Rgcg-Q_DLIwI-iHM_mHej4)|[350k steps](https://drive.google.com/open?id=1hcxs_zgPdAxAwtEsr4GDaPtZVgLDU5nh)|
+German|CSS10|[150k steps](https://drive.google.com/open?id=15ZusRQiqK2HyagWDLgtVF6GLLKUK7iVB)|[100k steps](https://drive.google.com/open?id=17VyjKSMYFmIqArQr6yYcfl_NdYRqesL4)
 
 
 ## Notes
@@ -86,10 +89,4 @@ TODO
 * The audio preprocessing uses [Kyubyong's DCTTS code](https://github.com/Kyubyong/dc_tts). This repo also helped me with
     some difficulties I had during the implementation.
 * Also see this other [PyTorch implementation](https://github.com/chaiyujin/dctts-pytorch).
-
-
-
-
-
-
 
