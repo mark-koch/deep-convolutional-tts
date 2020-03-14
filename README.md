@@ -65,7 +65,7 @@ With ``synthesize.py text.txt`` you can generate a wav file from a given text fi
 
 
 ## Samples
-See [here](http://mark-koch.github.io/deep-convolutional-tts/).
+See [here](http://mark-koch.github.io/deep-convolutional-tts/index.html).
 
 
 
