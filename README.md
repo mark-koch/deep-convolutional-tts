@@ -28,7 +28,7 @@ If you want want to train a model, you need to prepare your dataset:
 3. Create a text file ``data/lines.txt`` containing the transcription of the audio clips in the following format:
 
         my-wav-file-000|Transciption of file my-wav-file-000.wav
-        my-wav-file-001|Transciption of file clip my-wav-file-001.wav
+        my-wav-file-001|Transciption of file my-wav-file-001.wav
         ...
         
    Note that you don't need to remove umlauts or accents like ä, é, î, etc. This will be done automatically. If your transcipt 
