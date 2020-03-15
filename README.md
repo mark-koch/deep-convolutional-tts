@@ -1,4 +1,4 @@
-# Deep Convolutional TTS [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1-vePaCwBcLD2H-mGScYE6MnfN8A4uGoz)
+# Deep Convolutional TTS [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1-vePaCwBcLD2H-mGScYE6MnfN8A4uGoz#forceEdit=true&sandboxMode=true)
 
 A PyTorch implementation of "[Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention](https://arxiv.org/abs/1710.08969)".
 
