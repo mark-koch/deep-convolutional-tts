@@ -55,7 +55,7 @@ if __name__ == "__main__":
         previous_att = torch.zeros(1, len(text), Config.max_T, requires_grad=False, device=device)
         for t in range(Config.max_T - 1):
             _, Y, A, current_position = text2mel.forward(L, S,
-                                                         force_incremental_att=False,
+                                                         force_incremental_att=True,
                                                          previous_att_position=previous_position,
                                                          previous_att=previous_att,
                                                          current_time=t)
