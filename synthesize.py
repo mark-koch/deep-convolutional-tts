@@ -34,7 +34,7 @@ if __name__ == "__main__":
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     assert os.path.exists(args.text2mel_path), "File '{}' does not exist!".format(args.text2mel_path)
-    assert os.path.exists(args.ssrn_path), "File '{}' does not exist!".format(args.text2mel_path)
+    assert os.path.exists(args.ssrn_path), "File '{}' does not exist!".format(args.ssrn_path)
     assert os.path.exists(args.text_path), "File '{}' does not exist!".format(args.text_path)
 
     # Restore config
