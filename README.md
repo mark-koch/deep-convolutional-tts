@@ -11,6 +11,7 @@ Requirements:
 * numpy
 * matplotlib
 * unidecode
+* tqdm
 
 Optional:
 * simpleaudio and num2words, if you want to run ``realtime.py``
