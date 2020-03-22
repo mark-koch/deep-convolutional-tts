@@ -1,6 +1,7 @@
 import argparse
 import io
 import multiprocessing
+import tqdm
 from networks import SSRN, Text2Mel
 from config import Config
 from text_processing import *
@@ -79,6 +80,9 @@ if __name__ == "__main__":
     pool = multiprocessing.Pool(processes=args.num_workers)
     wavs = []
 
+    # Progress Bar
+    progress_bar = tqdm.tqdm(total=len(batches) * (args.max_T-2))
+
     for batch in batches:
         # Process the texts
         for i in range(len(batch)):
@@ -96,7 +100,7 @@ if __name__ == "__main__":
         previous_position = torch.zeros(len(batch), requires_grad=False, dtype=torch.long, device=device)
         previous_att = None  # torch.zeros(len(batch), max_text_len, args.max_T, requires_grad=False, device=device)
         for t in range(args.max_T-1):
-            print(t)
+            progress_bar.update(1)
             _, Y, A, current_position = text2mel.forward(L, S,
                                                          force_incremental_att=True,
                                                          previous_att_position=previous_position,
@@ -114,6 +118,9 @@ if __name__ == "__main__":
 
             for j in range(Z.shape[0]):
                 wavs.append(pool.apply_async(spectrogram2wav, (Z[j], )))
+
+    progress_bar.close()
+    print("Generate wav...")
 
     # Wait for the workers to finish
     for i in range(len(wavs)):
